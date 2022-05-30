@@ -1,0 +1,100 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-lg-3 col-4">
+                <div id="filter" class="p-2">
+                    <form method="POST">
+                        <div class="mt-2 mb-3">
+                            <h3 class="text-center">
+                                <b>Фильтр <i class='bx bx-filter'></i></b>
+                            </h3>
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <b>Выберите город:</b>
+                            </label>
+                            <select name="city" class="form-select form-control" aria-label="Default select example">
+                                {% for x in city_lists %}
+                                    <option value="{{ x }}">{{ x }}</option>
+                                {% endfor %}
+                            </select>
+                        </div>
+                        <br>
+                        <div class="mb-3">
+                            <label class="form-label">
+                                <b>Количество звёзд:</b>
+                            </label>
+                            <div class="form-check">
+                                <input class="form-check-input" value="5" type="radio" name="star" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  5 Звёзд
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" value="4" type="radio" name="star" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  4 Звёзды
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" value="3" type="radio" name="star" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  3 Звёзды
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" value="2" type="radio" name="star" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  2 Звёзды
+                                </label>
+                            </div>
+                            <div class="form-check">
+                                <input class="form-check-input" value="1" type="radio" name="star" id="flexRadioDefault1">
+                                <label class="form-check-label" for="flexRadioDefault1">
+                                  1 Звёзды
+                                </label>
+                            </div>
+                        </div>
+                        <div class="mt-5">
+                            <button type="submit" class="btn btn-primary w-100">Применить</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <div class="col-lg-9 col-8 p-3">
+                <div class="row mmt-4">
+
+                    <!-- Каталог предложений -->
+                    {% for item in data %}
+                        <div class="col-md-4">
+                            <div id="card_data" class="card mb-4 shadow">
+                                <img src="{{ item[3]['image'] }}" alt="{{ item[1] }}" class="img-fluid">
+                                <span class="dec">
+                                    <p><i class='bx bx-home-circle'></i> {{ item[1] }}</p>
+                                    <p class="dec-count">{{ item[2] }}</p>
+                                </span>
+                                <div class="card-body" style="margin-top: -6em;">
+                                    <a>Звёзд - {{ item[5] }} </a>
+                                    <a> Оценка <b style="color: red;">{{ item[6] }}</b></a>
+                                    <br><br>
+                                    <p>{{ item[4]| truncate(120) }}</p>
+                                    <br>
+                                    <div class="d-flex justify-content-between align-items-center">
+                                        <div class="btn-group">
+                                            <a href="{{url_for('show', ids=item[7])}}" type="button" class="btn btn-md btn-primary">Подробнее <i class='bx bx-right-arrow-alt'></i></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    {% endfor %}
+                    <!-- END -->
+                    
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-6 mx-auto card shadow p-3 mb-5">
+                    <h3 class="text-center mb-4">
+                        <b>Регистрация</b>
+                    </h3>
+                    <form method="POST">
+                        <div id="organization">
+                            <div  class="mb-3">
+                                <label for="OrganizationName" class="form-label">Название вашей организации</label>
+                                <input type="text" name="organization_name" class="form-control" id="OrganizationName">
+                            </div>
+                            <button type="button" onclick="next()" class="btn btn-primary">Далее</button>
+                        </div>
+                            
+                        <div id="general_user" style="display: none;">
+                            <div class="mb-3">
+                                <label for="Name" class="form-label">Введите имя</label>
+                                <input type="text" name="name" class="form-control" id="Name">
+                            </div>
+                            <div class="mb-3">
+                                <label for="SurName" class="form-label">Введите фамилию</label>
+                                <input type="text" name="surname" class="form-control" id="SurName">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputEmail" class="form-label">Введите адрес электронной почты</label>
+                                <input type="email" name="email" class="form-control" id="exampleInputEmail">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword1" class="form-label">Введите пароль</label>
+                                <input type="password" name="password1" class="form-control" id="exampleInputPassword1">
+                            </div>
+                            <div class="mb-3">
+                                <label for="exampleInputPassword2" class="form-label">Введите пароль ещё раз</label>
+                                <input type="password" name="password2" class="form-control" id="exampleInputPassword2">
+                            </div>
+                            <button type="submit" class="btn btn-primary">Зарегистрироваться</button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script>
+            function next(){
+                var OrganizationName = document.getElementById("OrganizationName");
+                var general_user = document.getElementById("general_user");
+
+                if (OrganizationName.value.length > 0){
+                    general_user.style.display = "block";
+                    return document.getElementById("organization").style.display = "none";
+                }
+            }
+        </script>
+    </main>
+{% endblock %}

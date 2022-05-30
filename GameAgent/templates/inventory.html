@@ -1,0 +1,71 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+	Инвентарь
+{% endblock %}
+
+{% block main %}
+
+	<div class="col-12">
+
+		<a href="{% url 'profile' request.user.username  %}" class="col-2 btn btn-dark" style="position: relative;top: 0em;">Назад</a>
+		<!-- <a href="" class="col-2 btn btn-dark" style="position: relative;left: 50%;top: 0em;">Инвентарь</a> -->
+
+		
+	</div>
+
+	<div class="mt-5"></div>
+	<h3>Инвентарь</h3>
+
+	<div class="" style="overflow-y: scroll; overflow-x: hidden; height: calc(100vh - 200px);">
+		<h2>Frames:</h2>
+		{% if about_user.active_frame %}
+			<a href="{% url 'set_item' 100000 %}" class="btn btn-dark">Снять все рамки</a><br><br>
+		{% endif %}
+		{% if not frames|length %}
+			<div class="container">
+				<p class="text-center">Нет рамок</p>
+			</div>
+		{% endif %}
+		<div class="row row-cols-1 row-cols-md-2 g-2">
+			{% for i in frames %}
+			<div class="col">
+				<div class="card" style="width: 280px">
+					<img src="{{ i.image.url }}" class="card-img-top">
+					<div class="card-body">
+						<h5 class="card-title">{{ i.name }}</h5>
+						{% if about_user.active_frame != i %}
+							<a href="{% url 'set_item' i.id %}" class="btn btn-dark">Установить</a>
+						{% endif %}
+					</div>
+				</div>
+			</div>
+			{% endfor %}
+		</div>
+		<h2>Backgrounds:</h2>
+		{% if about_user.active_back %}
+			<a href="{% url 'set_item' 200000 %}" class="btn btn-dark">Снять все фоны</a><br><br>
+		{% endif %}
+		<div class="row row-cols-1 row-cols-md-2 g-2">
+			{% if not backs|length %}
+				<div class="container">
+					<p class="text-center">Нет фонов</p>
+				</div>
+			{% endif %}
+			{% for i in backs %}
+				<div class="col">
+					<div class="card" style="width: 280px">
+						<img src="{{ i.image.url }}" class="card-img-top">
+						<div class="card-body">
+							<h5 class="card-title">{{ i.name }}</h5>
+							{% if about_user.active_back != i %}
+								<a href="{% url 'set_item' i.id %}" class="btn btn-dark">Установить</a>
+							{% endif %}
+						</div>
+					</div>
+				</div>
+			{% endfor %}
+		</div>
+	</div>
+{% endblock %}

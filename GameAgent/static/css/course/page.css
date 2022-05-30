@@ -1,0 +1,96 @@
+.article_text h1{
+    color: black;
+    border-bottom: 4px solid rgb(4, 80, 116);
+    margin: 40px 0px 20px 0px;
+}
+
+.article_text table{
+    background-color: rgb(249, 253, 255);
+    margin: 20px 0px 30px 0px;
+}
+
+.article_text td{
+    border: 1px solid black;
+    padding: 20px;
+}
+
+.article_text h2{
+    margin: 30px 0px 15px 0px;
+    color: black;
+    border-bottom: 2px solid rgb(4, 80, 116);
+}
+
+.article_text h3{
+    margin: 10px 0px 10px 0px;
+    color: black;
+}
+
+.article_text p{
+    color: black;
+}
+
+.article_text li{
+    font-size: 1.1em;
+    color: black;
+}
+
+.article-image {
+    margin: 20px;
+}
+
+.code {
+    border: 1px solid #DDD;
+    background-color: #F7F7F7;
+    font-size: 20px;
+    font-family: 'Andale Mono', 'Courier New', Courier, monospace;
+    padding: 1em 1em;
+    margin: 0.4em 0;
+    overflow: auto;
+}
+
+@media(max-width: 480px) {
+    .postcard .postcard__text {
+        padding: 0.5rem;
+        font-size: 1.1em;
+    }
+    .side-menu{
+        margin: 0;
+        padding: 5%;
+    }
+    .test-window {
+        min-height: 15em;
+    }
+    
+    /* Bot */
+    .window-bot {
+        top: 13%!important;
+        left: 3%!important;
+        width: 95%!important;
+        padding: 0.5em!important;
+    }
+    .bot-container {
+        width: 100%;
+    }
+    .bot-container img{
+        margin-left: -34%;
+        margin-top: 10%;
+    }
+    .bot-container__chat{
+        width: 88%;
+        top: 2em;
+        margin-bottom: 3em!important;
+        font-size: 0.8em;
+    }
+    .bot-container__dialog{
+        margin-top: 5em;
+    }
+    .bot-container__chat{
+        margin-bottom: 5em!important;
+    }
+    .window-bot form textarea {
+        width: 85%;
+    }
+    .light{
+        padding: 0!important;
+    }
+}

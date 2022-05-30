@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Information Retrieval System</title>
+    <!-- Bootstrap -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-grid.min.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/bootstrap-reboot.min.css') }}">
+    <!-- BoxIcons -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/boxicons-2.1.2/css/boxicons.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/boxicons-2.1.2/css/animations.css') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/boxicons-2.1.2/css/transformations.css') }}">
+    <!-- BoxIcons Fonts -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/boxicons-2.1.2/fonts/boxicons.ttf') }}">
+    <link rel="stylesheet" href="{{ url_for('static', filename='fonts/boxicons-2.1.2/fonts/boxicons.woff') }}">
+
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <header class="container-fluid">
+        <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
+            <a class="navbar-brand" href="{{ url_for('index') }}">
+                <b>IRS</b>
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse" aria-expanded="false" aria-label="Toggle navigation">
+              <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarCollapse">
+              <ul class="navbar-nav mr-auto">
+
+                <li class="nav-item">
+                    <a class="nav-link" href="{{ url_for('index') }}">
+                        <strong>Каталог</strong></a>
+                </li>
+                {% if 'user' in session %}
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('history') }}">
+                            <strong>Недавние места</strong>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a class="nav-link" href="{{ url_for('profile') }}">
+                            <strong>Профиль</strong>
+                        </a>
+                    </li>
+                {% endif %}
+              </ul>
+                {% if 'user' in session %}
+                    <a href="{{ url_for('signout') }}" class="nav-link btn btn-light form-inline mt-2 mt-md-0">Выход</a>
+                {% else %}
+                    <a href="{{ url_for('signin') }}" class="nav-link btn btn-light form-inline mt-2 mt-md-0">Вход</a>
+                {% endif %}
+            </div>
+        </nav>
+    </header>
+
+    {% block content %}
+    {% endblock %}
+
+    <footer class="footer mt-auto py-3 bg-dark">
+        <div class="container">
+          <span class="text-muted d-block text-center">@ Information Retrieval System</span>
+        </div>
+    </footer>
+    <!-- Bootstrap Scripts -->
+    <script src="{{ url_for('static', filename='js/bootstrap.bundle.min.js') }}"></script>
+    <script src="{{ url_for('static', filename='js/bootstrap.min.js') }}"></script>
+</body>
+</html>

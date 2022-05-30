@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main role="main" class="container-fluid">
+        <div class="row">
+           
+            <div class="col-12">
+                <div class="col-6 mx-auto card shadow p-3 mb-5">
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Текущи пароль</label>
+                            <input type="password" id="password_old" class="form-control">
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputEmail1" class="form-label">Новый пароль</label>
+                            <input type="password" id="password_new" class="form-control">
+                        </div>
+                        <button type="button" onclick="set_password()" class="btn btn-primary">Изменить</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+
+        <script 
+            src="https://code.jquery.com/jquery-3.4.1.min.js" 
+            integrity="sha256-CSXorXvZcTkaix6Yvo6HppcZGetbYMGWSFlBw8HfCJo=" 
+            crossorigin="anonymous">
+        </script>
+        <script>
+            function set_password(){
+                return $.ajax({
+                    url: "{{ url_for('update_password') }}",
+                    // headers: {'X-CSRFToken': '{{ csrf_token }}'},
+                    method: 'POST',
+                    // contentType: 'application/json; charset=utf-8',
+                    dataType: 'json',
+                    data: { 
+                        password_old: document.getElementById("password_old").value,
+                        password_new: document.getElementById("password_new").value
+                    },
+                    success: function(response){
+                        alert(response.message)
+                    }
+                });
+            }
+        </script>
+    </main>
+{% endblock %}

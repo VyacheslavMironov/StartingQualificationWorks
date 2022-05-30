@@ -1,0 +1,114 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+    <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-6">
+                  <div class="container">
+                    <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel">
+                        <div class="carousel-inner">
+                            <div class="carousel-item active">
+                                <img src="{{ detail[3]['image'] }}" class="d-block w-100" alt="{{ detail[8] }}">
+                            </div>
+                          {% for item in detail[11]['images'] %}
+                                <div class="carousel-item">
+                                    <img src="{{item}}" class="d-block w-100" alt="{{ detail[8] }}">
+                                </div>
+                            {% endfor %}
+                        </div>
+                        <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
+                            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"></span>
+                        </button>
+                        <button class="carousel-control-next" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="next">
+                            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                            <span class="visually-hidden"></span>
+                        </button>
+                    </div>
+                </div>
+                <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+                {% if 'user' in session %}
+                    <div class="card mt-4 mx-auto shadow p-4 mb-5">
+                        <h3 class="text-center mb-4">
+                            <b>Забронировать</b>
+                        </h3>
+                        <form method="POST">
+                            <!-- Скрытые поля -->
+                            <input name="user_id" type="hidden" value="{{ session['user']['id'] }}">
+                            <input name="hotel" type="hidden" value="{{ detail[0] }}">
+                            <input name="type_number" type="hidden" value="{{ detail[9] }}">
+                            <div class="form-label-group mb-3">
+                                <label class="form-label">
+                                    <b>Укажите количество персон:</b>
+                                </label>
+                                <select name="count" class="form-select form-control col-4" aria-label="Default select example">
+                                    <option value="1-2 человек">1-2 человек</option>
+                                    <option value="3-4 человек">3-4 человек</option>
+                                    <option value="5-6 человек">5-6 человек</option>
+                                </select>
+                            </div>
+                            <div class="row">
+                                <div class="col-6 mb-3">
+                                    <label class="form-label">
+                                        <b>Дата заезда</b>
+                                    </label>
+                                    <input name="check-in" type="date" class="form-control">
+                                </div>
+                                <div class="col-6 mb-3">
+                                    <label class="form-label">
+                                        <b>Дата выезда</b>
+                                    </label>
+                                    <input name="departure" type="date" class="form-control">
+                                </div>
+                            </div>
+                            <div class="m-3"></div>
+                            <button type="submit" class="btn btn-primary w-100">Забронировать</button>
+                        </form>
+                    </div>
+                {% endif %}
+            </div>
+            <div class="col-6">
+                <div class="col-12 mb-4">
+                    <h3>
+                        <strong>{{ detail[1] }} - {{ detail[9] }}</strong>
+                    </h3>
+                </div>
+                <div class="col-12">
+                    <p>{{ detail[4] }}</p>
+                </div>
+                <div class="col-12 mt-5">
+                    <h4>
+                        <strong>Характеристики:</strong>
+                    </h4>
+                    <table class="table table-dark">
+                        <tbody>
+                            <!-- Характеристики -->
+                          <tr>
+                            <td>Бесплатный Wi-Fi</td>
+                            <td><i class='bx bx-check'></i></td>
+                          </tr>
+                          <tr>
+                            <td>Бесплатная парковка</td>
+                            <td><i class='bx bx-check'></i></td>
+                          </tr>
+                          <tr>
+                            <td>Трансфер от/до аэропорта</td>
+                            <td><i class='bx bx-check'></i></td>
+                          </tr>
+                          <tr>
+                            <td>Кол-во звёзд - {{ detail[5] }}</td>
+                            <td><i class='bx bx-check'></i></td>
+                          </tr>
+                          <tr>
+                            <td>Оценка посетителей - {{ detail[6] }}</td>
+                            <td><i class='bx bx-check'></i></td>
+                          </tr>
+                          <!-- END -->
+                        </tbody>
+                      </table>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}

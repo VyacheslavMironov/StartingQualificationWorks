@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block content %}
+    <main role="main" class="container-fluid">
+        <div class="row">
+            <div class="col-12">
+                <div class="col-6 mx-auto card shadow p-3 mb-5">
+                    <h3 class="text-center mb-4">
+                        <b>Вход</b>
+                    </h3>
+                    <form method="POST">
+                        <div class="mb-3">
+                            <label for="Email" class="form-label">Введите логин</label>
+                            <input type="email" name="email" class="form-control" id="Email" placeholder="example@mail.ru" >
+                        </div>
+                        <div class="mb-3">
+                            <label for="exampleInputPassword2" class="form-label">Введите пароль</label>
+                            <input type="password" name="password" class="form-control" id="exampleInputPassword2">
+                        </div>
+                        <button type="submit" class="btn btn-primary mb-3">Войти</button>
+                        <p>Нет учётной записи? <a href="{{ url_for('signup') }}">Создать</a></p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </main>
+{% endblock %}
